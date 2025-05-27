@@ -19,9 +19,9 @@ Auth::routes();
 
 Route::get('/dashboard/home', 'HomeController@index')->name('home');
 
-Route::get('/dashboard/pembeli', 'MapsController@index');
+Route::get('/dashboard/pembeli', 'PembeliController@index');
 
-Route::get('/dashboard/create', 'MapsController@create');
-Route::post('/dashboard/store', 'MapsController@store');
+Route::get('/dashboard/create', 'PembeliController@create');
+Route::post('/dashboard/store', 'PembeliController@store');
 
-Route::get('/dashboard/delete/{id}', 'MapsController@destroy');
+Route::get('/dashboard/delete/{id}', 'PembeliController@destroy');

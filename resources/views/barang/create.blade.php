@@ -7,7 +7,7 @@
             <div class="card">
                 <div class="card-header">Create</div>
                 <div class="card-body">
-                    <form method="POST" action="/gps_tracking/public/dashboard/store">
+                    <form method="POST" action="/dashboard/store">
                     {{csrf_field()}}
                     <div class="form-row">
                         <div class="col">

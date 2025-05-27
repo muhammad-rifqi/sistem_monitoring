@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Pembeli;
 
-class PembeliController extends Controller
+class LaporanController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +13,7 @@ class PembeliController extends Controller
      */
     public function index()
     {
-        $data = Pembeli::all();
-        return view('pembeli.index',compact('data'));
+        //
     }
 
     /**
@@ -25,7 +23,7 @@ class PembeliController extends Controller
      */
     public function create()
     {
-        return view('pembeli.create');
+        //
     }
 
     /**
@@ -36,11 +34,7 @@ class PembeliController extends Controller
      */
     public function store(Request $request)
     {
-        $a = new Pembeli();
-        $a->latitude = $request->latitude;
-        $a->longitude = $request->longitude;
-        $a->save();
-        return redirect('/dashboard/pembeli');
+        //
     }
 
     /**
@@ -62,7 +56,7 @@ class PembeliController extends Controller
      */
     public function edit($id)
     {
-        
+        //
     }
 
     /**
@@ -85,8 +79,6 @@ class PembeliController extends Controller
      */
     public function destroy($id)
     {
-        $data = Pembeli::findOrFail($id);
-        $data->delete();
-        return redirect('/dashboard/pembeli');
+        //
     }
 }

@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Maps;
 
-class MapsController extends Controller
+class PenjualanController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +13,7 @@ class MapsController extends Controller
      */
     public function index()
     {
-        $data = Maps::all();
-        return view('maps.index',compact('data'));
+        //
     }
 
     /**
@@ -25,7 +23,7 @@ class MapsController extends Controller
      */
     public function create()
     {
-        return view('maps.create');
+        //
     }
 
     /**
@@ -36,11 +34,7 @@ class MapsController extends Controller
      */
     public function store(Request $request)
     {
-        $a = new Maps();
-        $a->latitude = $request->latitude;
-        $a->longitude = $request->longitude;
-        $a->save();
-        return redirect('/dashboard/maps');
+        //
     }
 
     /**
@@ -85,8 +79,6 @@ class MapsController extends Controller
      */
     public function destroy($id)
     {
-        $data = Maps::findOrFail($id);
-        $data->delete();
-        return redirect('/dashboard/maps');
+        //
     }
 }
