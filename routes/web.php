@@ -19,7 +19,7 @@ Auth::routes();
 
 Route::get('/dashboard/home', 'HomeController@index')->name('home');
 
-Route::get('/dashboard/maps', 'MapsController@index');
+Route::get('/dashboard/pembeli', 'MapsController@index');
 
 Route::get('/dashboard/create', 'MapsController@create');
 Route::post('/dashboard/store', 'MapsController@store');

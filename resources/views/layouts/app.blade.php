@@ -49,8 +49,18 @@
                                 </li>
                             @endif
                         @else
+                              <li class="nav-item">
+                                <a class="nav-link" href="/dashboard/pembeli">{{ __('Pembeli') }}</a>
+                            </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/gps_tracking/public/dashboard/maps">{{ __('Maps') }}</a>
+                                <a class="nav-link" href="/dashboard/barang">{{ __('Barang') }}</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/dashboard/penjualan">{{ __('Penjualan') }}</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="/dashboard/laporan">{{ __('Laporan') }}</a>
                             </li>
 
                             <li class="nav-item dropdown">
