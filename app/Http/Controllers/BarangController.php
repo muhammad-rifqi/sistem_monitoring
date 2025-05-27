@@ -14,7 +14,7 @@ class BarangController extends Controller
      */
     public function index()
     {
-        $data = Barang::all();
+        $data = Barang::paginate(10);
         return view('barang.index',compact('data'));
     }
 
@@ -36,7 +36,24 @@ class BarangController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if(!empty($request->file('foto_barang'))) {
+            $foto = $request->file('foto_barang');
+            $nama_file = $foto->getClientOriginalName();
+            $newName = explode(".", $nama_file);
+            $ext = end($newName);
+            $ganti_nama = time().'.'.$ext;
+            $destination = 'upload/';
+            $foto->move($destination,$ganti_nama);
+
+            $brg = new Barang();
+            $brg->nama_barang = $request->nama_barang;
+            $brg->stok_barang = $request->stok_barang;
+            $brg->harga_barang = $request->harga_barang;
+            $brg->foto_barang = $ganti_nama;
+            $brg->deskripsi_barang = $request->deskripsi_barang;
+            $brg->save();            
+        } 
+        return redirect('/dashboard/barang')->with('status', 'Barang created!');
     }
 
     /**
@@ -58,7 +75,8 @@ class BarangController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = Barang::findOrFail($id);
+        return view('barang.edit',compact('data'));
     }
 
     /**
@@ -70,7 +88,33 @@ class BarangController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        if(!empty($request->file('foto_barang'))) {
+            $foto = $request->file('foto_barang');
+            $nama_file = $foto->getClientOriginalName();
+            $newName = explode(".", $nama_file);
+            $ext = end($newName);
+            $ganti_nama = time().'.'.$ext;
+            $destination = 'upload/';
+            $foto->move($destination,$ganti_nama);
+
+            $brg = Barang::findOrFail($id);
+            $brg->nama_barang = $request->nama_barang;
+            $brg->stok_barang = $request->stok_barang;
+            $brg->harga_barang = $request->harga_barang;
+            $brg->foto_barang = $ganti_nama;
+            $brg->deskripsi_barang = $request->deskripsi_barang;
+            $brg->save();         
+
+        } else {
+            $brg = Barang::findOrFail($id);
+            $brg->nama_barang = $request->nama_barang;
+            $brg->stok_barang = $request->stok_barang;
+            $brg->harga_barang = $request->harga_barang;
+            $brg->deskripsi_barang = $request->deskripsi_barang;
+            $brg->save();   
+        }
+
+        return redirect('/dashboard/barang')->with('status', 'Barang updated!');
     }
 
     /**
@@ -79,8 +123,17 @@ class BarangController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id, $foto)
     {
-        //
+          if(!empty($foto)){
+            $data = Barang::findOrFail($id);
+            $data->delete();
+            unlink(public_path('upload/'.$foto));
+            return redirect('/dashboard/barang')->with('status', 'Barang Deleted!');
+        }else{
+            $data = Barang::findOrFail($id);
+            $data->delete();
+            return redirect('/dashboard/barang')->with('status', 'Barang Deleted!');
+        }
     }
 }

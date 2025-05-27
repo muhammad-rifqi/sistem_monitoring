@@ -14,7 +14,7 @@ class PembeliController extends Controller
      */
     public function index()
     {
-        $data = Pembeli::all();
+        $data = Pembeli::paginate(10);
         return view('pembeli.index',compact('data'));
     }
 
@@ -37,8 +37,11 @@ class PembeliController extends Controller
     public function store(Request $request)
     {
         $a = new Pembeli();
-        $a->latitude = $request->latitude;
-        $a->longitude = $request->longitude;
+        $a->nama = $request->nama;
+        $a->email = $request->email;
+        $a->alamat = $request->alamat;
+        $a->no_telepon = $request->no_telepon;
+        $a->kode_pos = $request->kode_pos;
         $a->save();
         return redirect('/dashboard/pembeli');
     }
@@ -62,7 +65,8 @@ class PembeliController extends Controller
      */
     public function edit($id)
     {
-        
+        $data = Pembeli::findOrFail($id);
+        return view('pembeli.edit',compact('data'));
     }
 
     /**
@@ -74,7 +78,14 @@ class PembeliController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = Pembeli::findOrFail($id);
+        $data->nama = $request->nama;
+        $data->email = $request->email;
+        $data->alamat = $request->alamat;
+        $data->no_telepon = $request->no_telepon;
+        $data->kode_pos = $request->kode_pos;
+        $data->save();
+        return redirect('/dashboard/pembeli');
     }
 
     /**

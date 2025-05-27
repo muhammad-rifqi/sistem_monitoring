@@ -14,7 +14,7 @@ class LaporanController extends Controller
      */
     public function index()
     {
-        $data = Penjualan::all();
+        $data = Laporan::all();
         return view('laporan.index',compact('data'));
     }
 

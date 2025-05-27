@@ -5,31 +5,32 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header">Barang / Create</div>
+                <div class="card-header">Barang / Edit</div>
                 <div class="card-body">
-                    <form method="POST" action="/dashboard/barang/store" enctype="multipart/form-data">
+                    <form method="POST" action="/dashboard/barang/update/{{$data->id}}" enctype="multipart/form-data">
                     {{csrf_field()}}
                     <div class="form-row">
                         <div class="col">
-                            <input type="text" name="nama_barang" class="form-control" placeholder="Nama Barang" required>
+                            <input type="text" name="nama_barang" class="form-control" placeholder="Nama Barang" value="{{$data->nama_barang}}">
                         </div>
                         <div class="col">
-                            <input type="text" name="stok_barang" class="form-control" placeholder="Stok Barang" required>
-                        </div>
-                    </div>
-                    <br>
-                    <div class="form-row">
-                        <div class="col">
-                            <input type="text" name="harga_barang" class="form-control" placeholder="Harga Barang" required>
-                        </div>
-                        <div class="col">
-                            <input type="file" name="foto_barang" class="form-control" placeholder="Foto Barang" required>
+                            <input type="text" name="stok_barang" class="form-control" placeholder="Stok Barang" value="{{$data->stok_barang}}"equired>
                         </div>
                     </div>
                     <br>
                     <div class="form-row">
                         <div class="col">
-                            <input type="text" name="deskripsi_barang" class="form-control" placeholder="Deskripsi Barang" required>
+                            <input type="text" name="harga_barang" class="form-control" placeholder="Harga Barang" value="{{$data->harga_barang}}">
+                        </div>
+                        <div class="col">
+                            <img src="{{url('upload/'.$data->foto_barang)}}" width="250" alt="gambar barang"/> <br />
+                            <input type="file" name="foto_barang" class="form-control" placeholder="Foto Barang">
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-row">
+                        <div class="col">
+                            <input type="text" name="deskripsi_barang" class="form-control" placeholder="Deskripsi Barang" value="{{$data->deskripsi_barang}}">
                         </div>
                     </div>
                     <br>

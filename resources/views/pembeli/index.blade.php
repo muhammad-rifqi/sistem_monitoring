@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header">Data Maps</div>
+                <div class="card-header">Data Pembeli</div>
                 <div class="card-body">
                 <p>
                     <a href="/dashboard/pembeli/create" class="btn btn-primary"> Tambah </a>
@@ -15,18 +15,26 @@
                     <thead>
                         <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Latitude</th>
-                        <th scope="col">Longitude</th>
+                        <th scope="col">Nama</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">No Telepon</th>
+                        <th scope="col">Alamat</th>
+                        <th scope="col">Kode Pos</th>
                         <th scope="col">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach($data as $row)
                         <tr>
-                        <th scope="row">{{$row->id}}</th>
-                        <td>{{$row->latitude}}</td>
-                        <td>{{$row->longitude}}</td>
-                        <td><a href="/dashboard/pembeli/delete/{{$row->id}}" class="btn btn-danger" onclick="return confirm('Yakin Mau Hapus Data ini ??')">Delete</a></td>
+                        <th scope="row">#{{$row->id}}</th>
+                        <td>{{$row->nama}}</td>
+                        <td>{{$row->email}}</td>
+                        <td>{{$row->no_telepon}}</td>
+                        <td>{{$row->alamat}}</td>
+                        <td>{{$row->kode_pos}}</td>
+                        <td><a href="/dashboard/pembeli/edit/{{$row->id}}" class="btn btn-warning">Edit</a>
+                            <a href="/dashboard/pembeli/delete/{{$row->id}}" class="btn btn-danger" onclick="return confirm('Yakin Mau Hapus Data ini ??')">Delete</a>
+                        </td>
                         </tr>
                        @endforeach
                     </tbody>
