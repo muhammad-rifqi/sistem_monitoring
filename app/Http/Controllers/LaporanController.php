@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Laporan;
 
 class LaporanController extends Controller
 {
@@ -13,7 +14,8 @@ class LaporanController extends Controller
      */
     public function index()
     {
-        //
+        $data = Penjualan::all();
+        return view('penjualan.index',compact('data'));
     }
 
     /**
