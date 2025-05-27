@@ -19,8 +19,8 @@
                         <div class="col-sm-6">
                             <div class="card">
                             <div class="card-body">
-                                <h5 class="card-title">Latitude</h5>
-                                <p class="card-text"> Web tracking with latitude </p>
+                                <h5 class="card-title">Barang</h5>
+                                <p class="card-text"> Jumlah Semua Barang </p>
                                 <a class="btn btn-primary">0</a>
                             </div>
                             </div>
@@ -28,8 +28,8 @@
                         <div class="col-sm-6">
                             <div class="card">
                             <div class="card-body">
-                                <h5 class="card-title">Longitude</h5>
-                                <p class="card-text"> Web Tracking with Longitude </p>
+                                <h5 class="card-title">Pembeli/Member</h5>
+                                <p class="card-text"> Jumlah Pembeli/Customer </p>
                                 <a class="btn btn-primary">0</a>
                             </div>
                             </div>

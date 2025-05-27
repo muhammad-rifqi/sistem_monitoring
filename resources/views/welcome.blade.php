@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>SISTEM MONITORING</title>
+        <title>SISTEM MONITORING PRODUK</title>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     </head>
     <body>
@@ -11,7 +11,7 @@
             @if (Route::has('login'))
                 <div class="row" style="padding:10px">
                     <div class="col-md-6  text-left">
-                    <h3>SISTEM MONITORING</h3>
+                    <h3>SISTEM MONITORING PRODUK</h3>
                     </div>
                     <div class="col-md-6  text-right">
                        @auth

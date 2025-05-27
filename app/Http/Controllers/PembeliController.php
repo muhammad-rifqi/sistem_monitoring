@@ -43,7 +43,7 @@ class PembeliController extends Controller
         $a->no_telepon = $request->no_telepon;
         $a->kode_pos = $request->kode_pos;
         $a->save();
-        return redirect('/dashboard/pembeli');
+        return redirect('/dashboard/pembeli')->with('status', 'Pembeli created!');
     }
 
     /**
@@ -85,7 +85,7 @@ class PembeliController extends Controller
         $data->no_telepon = $request->no_telepon;
         $data->kode_pos = $request->kode_pos;
         $data->save();
-        return redirect('/dashboard/pembeli');
+        return redirect('/dashboard/pembeli')->with('status', 'Pembeli updated!');
     }
 
     /**
@@ -98,6 +98,6 @@ class PembeliController extends Controller
     {
         $data = Pembeli::findOrFail($id);
         $data->delete();
-        return redirect('/dashboard/pembeli');
+        return redirect('/dashboard/pembeli')->with('status', 'Pembeli deleted!');
     }
 }
