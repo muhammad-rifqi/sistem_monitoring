@@ -20,8 +20,11 @@ Auth::routes();
 Route::get('/dashboard/home', 'HomeController@index')->name('home');
 
 Route::get('/dashboard/pembeli', 'PembeliController@index');
+Route::get('/dashboard/pembeli/create', 'PembeliController@create');
+Route::post('/dashboard/pembeli/store', 'PembeliController@store');
+Route::get('/dashboard/pembeli/delete/{id}', 'PembeliController@destroy');
 
-Route::get('/dashboard/create', 'PembeliController@create');
-Route::post('/dashboard/store', 'PembeliController@store');
-
-Route::get('/dashboard/delete/{id}', 'PembeliController@destroy');
+Route::get('/dashboard/barang', 'BarangController@index');
+Route::get('/dashboard/barang/create', 'BarangController@create');
+Route::post('/dashboard/barang/store', 'BarangController@store');
+Route::get('/dashboard/barang/delete/{id}', 'BarangController@destroy');
