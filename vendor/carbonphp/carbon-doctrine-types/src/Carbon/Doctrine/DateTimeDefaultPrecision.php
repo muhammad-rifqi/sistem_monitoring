@@ -1,5 +1,5 @@
 <?php
-
+ 
 namespace Carbon\Doctrine;
 
 class DateTimeDefaultPrecision
