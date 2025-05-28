@@ -5,22 +5,13 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header">Supplier / Create</div>
+                <div class="card-header">Kategori / Create</div>
                 <div class="card-body">
-                    <form method="POST" action="/dashboard/supplier/store" enctype="multipart/form-data">
+                    <form method="POST" action="/dashboard/kategori/store" enctype="multipart/form-data">
                     {{csrf_field()}}
                     <div class="form-row">
                         <div class="col">
-                            <input type="text" name="nama" class="form-control" placeholder="Nama Supplier" required>
-                        </div>
-                        <div class="col">
-                            <input type="text" name="no_telepon" class="form-control" placeholder="No Telepon Supplier" required>
-                        </div>
-                    </div>
-                    <br>
-                    <div class="form-row">
-                        <div class="col">
-                            <input type="text" name="alamat" class="form-control" placeholder="Alamat Supplier" required>
+                            <input type="text" name="nama_kategori" class="form-control" placeholder="Nama Kategori" required>
                         </div>
                     </div>
                     <br>

@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Response;
+use App\Pemesanan;
+use App\Barang;
+use Session;
 class PemesananController extends Controller
 {
     /**
@@ -13,7 +16,8 @@ class PemesananController extends Controller
      */
     public function index()
     {
-        //
+        $data = Pemesanan::paginate(10);
+        return view('pemesanan.index',compact('data'));
     }
 
     /**
@@ -23,7 +27,14 @@ class PemesananController extends Controller
      */
     public function create()
     {
-        //
+        $data = Barang::all();
+        return view('pemesanan.create',compact('data'));
+    }
+
+    public function views($id)
+    {
+        $detail = Barang::findOrFail($id);
+        return Response::json($detail);
     }
 
     /**
@@ -34,7 +45,7 @@ class PemesananController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //Session::getId();
     }
 
     /**

@@ -9,27 +9,46 @@
                 <div class="card-body">
                     <form method="POST" action="/dashboard/barang/store" enctype="multipart/form-data">
                     {{csrf_field()}}
+                    <input type="hidden" id="nama_barang" name="nama_barang" value="">
                     <div class="form-row">
                         <div class="col">
-                            <input type="text" name="nama_barang" class="form-control" placeholder="Nama Barang" required>
+                            <select name="nama_barang" class="form-control" onchange="pilih(this.value)" required>
+                                <option value="--">Pilih Barang</option>
+                                @foreach($data as $row)
+                                    <option value="{{$row->id}}">{{$row->nama_barang}}</option>
+                                @endforeach
+                            </select>
                         </div>
                         <div class="col">
-                            <input type="text" name="stok_barang" class="form-control" placeholder="Stok Barang" required>
+                            <input type="text" name="stok_barang" id="stok_barang" class="form-control" placeholder="Stok Barang" value="" readonly>
                         </div>
                     </div>
                     <br>
                     <div class="form-row">
                         <div class="col">
-                            <input type="text" name="harga_barang" class="form-control" placeholder="Harga Barang" required>
-                        </div>
-                        <div class="col">
-                            <input type="file" name="foto_barang" class="form-control" placeholder="Foto Barang" required>
+                                <input type="text" name="harga_barang" id="harga_barang" class="form-control" placeholder="Harga Barang" value="" readonly>
                         </div>
                     </div>
                     <br>
                     <div class="form-row">
                         <div class="col">
-                            <input type="text" name="deskripsi_barang" class="form-control" placeholder="Deskripsi Barang" required>
+                            <img id="photo" src="/upload/default.jpeg" width="200" alt="gambar barang" style="border:1px solid #ccc; padding:3px"/> <br /><br />
+                            <input type="text" name="foto_barang" id="foto_barang" class="form-control" placeholder="Foto Barang" value="" readonly>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-row">
+                        <div class="col">
+                            <input type="text" id="deskripsi_barang" name="deskripsi_barang" class="form-control" value="" placeholder="Deskripsi Barang" readonly>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-row">
+                        <div class="col">
+                            <input type="text" name="jumlah_pesanan" id="jumlah_pesanan" class="form-control" placeholder="Jumlah Pesanan" value="">
+                        </div>
+                        <div class="col">
+                            <input type="text" name="session_id" id="session_id" class="form-control" placeholder="Session ID" value="">
                         </div>
                     </div>
                     <br>
@@ -45,3 +64,18 @@
     </div>
 </div>
 @endsection
+
+<script>
+    function pilih(e){
+            fetch('/dashboard/pemesanan/views/'+e)
+            .then(response => response.json())
+            .then((data)=> { 
+                document.getElementById("nama_barang").value = data?.nama_barang
+                document.getElementById("stok_barang").value = data?.stok_barang
+                document.getElementById("harga_barang").value = data?.harga_barang
+                document.getElementById("foto_barang").value = data?.foto_barang
+                document.getElementById("deskripsi_barang").value = data?.deskripsi_barang
+                document.getElementById("photo").setAttribute('src','/upload/'+data?.foto_barang);
+            });
+    }
+</script>

@@ -36,7 +36,10 @@ class KategoriController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = new Kategori();
+        $data->nama_kategori = $request->nama_kategori;
+        $data->save();
+        return redirect('/dashboard/kategori')->with('status', 'Kategori Inserted!');
     }
 
     /**
@@ -58,7 +61,8 @@ class KategoriController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = Kategori::findOrFail($id);
+        return view('kategori.edit',compact('data'));
     }
 
     /**
@@ -70,7 +74,10 @@ class KategoriController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = Kategori::findOrFail($id);
+        $data->nama_kategori = $request->nama_kategori;
+        $data->save();
+        return redirect('/dashboard/kategori')->with('status', 'Kategori updated!');
     }
 
     /**
@@ -81,6 +88,8 @@ class KategoriController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data = Kategori::findOrFail($id);
+        $data->delete();
+        return redirect('/dashboard/kategori')->with('status', 'Kategori deleted!');
     }
 }
