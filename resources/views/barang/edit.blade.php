@@ -22,9 +22,12 @@
                         <div class="col">
                             <input type="text" name="harga_barang" class="form-control" placeholder="Harga Barang" value="{{$data->harga_barang}}">
                         </div>
+                    </div>
+                    <br>
+                    <div class="form-row">
                         <div class="col">
-                            <img src="{{url('upload/'.$data->foto_barang)}}" width="250" alt="gambar barang"/> <br />
-                            <input type="file" name="foto_barang" class="form-control" placeholder="Foto Barang">
+                                <img src="{{url('upload/'.$data->foto_barang)}}" width="200" alt="gambar barang" style="border:1px solid #ccc; padding:3px;" /> <br />
+                                <input type="file" name="foto_barang" class="form-control" placeholder="Foto Barang">
                         </div>
                     </div>
                     <br>

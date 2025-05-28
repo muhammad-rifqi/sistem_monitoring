@@ -7,6 +7,7 @@ use Response;
 use App\Pemesanan;
 use App\Barang;
 use Session;
+use App\Pembeli;
 class PemesananController extends Controller
 {
     /**
@@ -28,7 +29,9 @@ class PemesananController extends Controller
     public function create()
     {
         $data = Barang::all();
-        return view('pemesanan.create',compact('data'));
+        $beli = Pembeli::all();
+        $sess = Session::getId();
+        return view('pemesanan.create',compact('data','sess','beli'));
     }
 
     public function views($id)
@@ -45,7 +48,17 @@ class PemesananController extends Controller
      */
     public function store(Request $request)
     {
-        //Session::getId();
+            $orders = new Pemesanan();
+            $orders->id_barang = $request->id_barang;
+            $orders->nama_barang = $request->nama_barang;
+            $orders->harga_barang = $request->harga_barang;
+            $orders->foto_barang = $request->foto_barang;
+            $orders->jumlah_pesanan = $request->jumlah_pesanan;
+            $orders->session_id = $request->session_id;
+            $orders->status_barang = $request->status_barang;
+            $orders->id_pembeli = $request->id_pembeli;
+            $orders->save();            
+            return redirect('/dashboard/pemesanan')->with('status', 'Pemesanan created!');
     }
 
     /**
@@ -67,7 +80,10 @@ class PemesananController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = Barang::all();
+        $beli = Pembeli::all();
+        $detail = Pemesanan::findOrFail($id);
+        return view('pemesanan.edit',compact('detail','beli','data'));
     }
 
     /**
@@ -79,9 +95,41 @@ class PemesananController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        if($request->status_barang == '1'){
+            $orders = Pemesanan::findOrFail($id);
+            $orders->id_barang = $request->id_barang;
+            $orders->nama_barang = $request->nama_barang;
+            $orders->harga_barang = $request->harga_barang;
+            $orders->jumlah_pesanan = $request->jumlah_pesanan;
+            $orders->session_id = $request->session_id;
+            $orders->id_pembeli = $request->id_pembeli;  
+            $orders->status_barang = $request->status_barang;
+            if($orders->save()){
+                $brg = Barang::findOrFail($orders->id_barang);
+                $check = ($brg->stok_barang - $request->jumlah_pesanan);
+                if($check > 1){
+                    $brg->stok_barang = $check;
+                    $brg->save();
+                        return redirect('/dashboard/pemesanan')->with('status', 'Pemesanan Updated!');
+                }else{
+                        return redirect('/dashboard/pemesanan')->with('failed', 'Gagal Update Stok, Coba Ulangi Lagi!');
+                }
+            }else{
+                return redirect('/dashboard/pemesanan')->with('status', 'Pemesanan Gagal Updated!');
+            }
+        }else{
+            $orders = Pemesanan::findOrFail($id);
+            $orders->id_barang = $request->id_barang;
+            $orders->nama_barang = $request->nama_barang;
+            $orders->harga_barang = $request->harga_barang;
+            $orders->jumlah_pesanan = $request->jumlah_pesanan;
+            $orders->session_id = $request->session_id;
+            $orders->id_pembeli = $request->id_pembeli;  
+            $orders->status_barang = $request->status_barang;
+            $orders->save();
+            return redirect('/dashboard/pemesanan')->with('status', 'Pemesanan Updated!');
+        }   
     }
-
     /**
      * Remove the specified resource from storage.
      *
@@ -90,6 +138,8 @@ class PemesananController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $brg = Pemesanan::findOrFail($id);
+        $brg->delete();
+        return redirect('/dashboard/pemesanan')->with('status', 'Pemesanan Deleted!');
     }
 }

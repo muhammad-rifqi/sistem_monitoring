@@ -64,7 +64,6 @@ Route::get('/dashboard/kategori/delete/{id}', 'KategoriController@destroy');
 Route::get('/dashboard/pemesanan', 'PemesananController@index');
 Route::get('/dashboard/pemesanan/create', 'PemesananController@create');
 Route::post('/dashboard/pemesanan/store', 'PemesananController@store');
-Route::get('/dashboard/pemesanan/view/{id}', 'PemesananController@show');
 Route::get('/dashboard/pemesanan/views/{id}', 'PemesananController@views');
 Route::get('/dashboard/pemesanan/edit/{id}', 'PemesananController@edit');
 Route::post('/dashboard/pemesanan/update/{id}', 'PemesananController@update');
