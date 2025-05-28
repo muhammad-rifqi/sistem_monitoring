@@ -36,9 +36,13 @@ Route::get('/dashboard/barang/delete/{id}/{foto}', 'BarangController@destroy');
 Route::get('/dashboard/penjualan', 'PenjualanController@index');
 Route::get('/dashboard/penjualan/create', 'PenjualanController@create');
 Route::post('/dashboard/penjualan/store', 'PenjualanController@store');
+Route::get('/dashboard/penjualan/edit/{id}', 'PenjualanController@edit');
+Route::post('/dashboard/penjualan/update/{id}', 'PenjualanController@update');
 Route::get('/dashboard/penjualan/delete/{id}', 'PenjualanController@destroy');
 
 Route::get('/dashboard/laporan', 'LaporanController@index');
 Route::get('/dashboard/laporan/create', 'LaporanController@create');
 Route::post('/dashboard/laporan/store', 'LaporanController@store');
+Route::get('/dashboard/laporan/edit/{id}', 'LaporanController@edit');
+Route::post('/dashboard/laporan/update/{id}', 'LaporanController@update');
 Route::get('/dashboard/laporan/delete/{id}', 'LaporanController@destroy');
