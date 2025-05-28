@@ -58,12 +58,20 @@
                                 <a class="nav-link" href="/dashboard/penjualan">{{ __('Penjualan') }}</a>
                             </li>
 
+                            <li class="nav-item">
+                                <a class="nav-link" href="/dashboard/pemesanan">{{ __('Pemesanan') }}</a>
+                            </li>
+
                              <li class="nav-item">
                                 <a class="nav-link" href="/dashboard/barang">{{ __('Barang') }}</a>
                             </li>
 
                              <li class="nav-item">
                                 <a class="nav-link" href="/dashboard/pembeli">{{ __('Pembeli') }}</a>
+                            </li>
+
+                             <li class="nav-item">
+                                <a class="nav-link" href="/dashboard/supplier">{{ __('Supplier') }}</a>
                             </li>
 
                             <li class="nav-item dropdown">
