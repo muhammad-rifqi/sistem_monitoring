@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Barang;
+// use Illuminate\Support\Facades\DB;
 
 class BarangController extends Controller
 {
@@ -44,7 +45,7 @@ class BarangController extends Controller
             $ganti_nama = time().'.'.$ext;
             $destination = 'upload/';
             $foto->move($destination,$ganti_nama);
-
+// Session::getId();
             $brg = new Barang();
             $brg->nama_barang = $request->nama_barang;
             $brg->stok_barang = $request->stok_barang;
