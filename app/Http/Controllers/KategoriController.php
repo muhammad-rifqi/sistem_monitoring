@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Supplier;
+use App\Kategori;
 
-class SupplierController extends Controller
+class KategoriController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,8 @@ class SupplierController extends Controller
      */
     public function index()
     {
-        $data = Supplier::paginate(10);
-        return view('supplier.index',compact('data'));
+        $data = Kategori::paginate(10);
+        return view('kategori.index',compact('data'));
     }
 
     /**
@@ -25,7 +25,7 @@ class SupplierController extends Controller
      */
     public function create()
     {
-        return view('supplier.create');
+        return view('kategori.create');
     }
 
     /**
@@ -36,12 +36,7 @@ class SupplierController extends Controller
      */
     public function store(Request $request)
     {
-        $data = new Supplier();
-        $data->nama = $request->nama;
-        $data->telepon = $request->no_telepon;
-        $data->alamat = $request->alamat;
-        $data->save();
-        return redirect('/dashboard/supplier')->with('status', 'Supplier Inserted!');
+        //
     }
 
     /**
@@ -63,8 +58,7 @@ class SupplierController extends Controller
      */
     public function edit($id)
     {
-         $data = Supplier::findOrFail($id);
-        return view('supplier.edit',compact('data'));
+        //
     }
 
     /**
@@ -76,12 +70,7 @@ class SupplierController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $data = Supplier::findOrFail($id);
-        $data->nama = $request->nama;
-        $data->telepon = $request->no_telepon;
-        $data->alamat = $request->alamat;
-        $data->save();
-        return redirect('/dashboard/supplier')->with('status', 'Supplier updated!');
+        //
     }
 
     /**
@@ -92,8 +81,6 @@ class SupplierController extends Controller
      */
     public function destroy($id)
     {
-        $data = Supplier::findOrFail($id);
-        $data->delete();
-        return redirect('/dashboard/supplier')->with('status', 'Supplier deleted!');
+        //
     }
 }

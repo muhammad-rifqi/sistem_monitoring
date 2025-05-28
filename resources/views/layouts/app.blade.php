@@ -62,8 +62,14 @@
                                 <a class="nav-link" href="/dashboard/pemesanan">{{ __('Pemesanan') }}</a>
                             </li>
 
-                             <li class="nav-item">
-                                <a class="nav-link" href="/dashboard/barang">{{ __('Barang') }}</a>
+                             <li class="nav-item dropdown">
+                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    {{ __('Barang') }} <span class="caret"></span>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="/dashboard/kategori" > Kategori Barang </a>
+                                    <a class="dropdown-item" href="/dashboard/barang" > Kelola Barang </a>
+                                </div>
                             </li>
 
                              <li class="nav-item">

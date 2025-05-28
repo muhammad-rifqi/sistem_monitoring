@@ -46,3 +46,17 @@ Route::post('/dashboard/laporan/store', 'LaporanController@store');
 Route::get('/dashboard/laporan/edit/{id}', 'LaporanController@edit');
 Route::post('/dashboard/laporan/update/{id}', 'LaporanController@update');
 Route::get('/dashboard/laporan/delete/{id}', 'LaporanController@destroy');
+
+Route::get('/dashboard/supplier', 'SupplierController@index');
+Route::get('/dashboard/supplier/create', 'SupplierController@create');
+Route::post('/dashboard/supplier/store', 'SupplierController@store');
+Route::get('/dashboard/supplier/edit/{id}', 'SupplierController@edit');
+Route::post('/dashboard/supplier/update/{id}', 'SupplierController@update');
+Route::get('/dashboard/supplier/delete/{id}', 'SupplierController@destroy');
+
+Route::get('/dashboard/kategori', 'KategoriController@index');
+Route::get('/dashboard/kategori/create', 'KategoriController@create');
+Route::post('/dashboard/kategori/store', 'KategoriController@store');
+Route::get('/dashboard/kategori/edit/{id}', 'KategoriController@edit');
+Route::post('/dashboard/kategori/update/{id}', 'KategoriController@update');
+Route::get('/dashboard/kategori/delete/{id}', 'KategoriController@destroy');
