@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Laporan;
+use App\Penjualan;
+use DB;
+use Response;
 
 class LaporanController extends Controller
 {
@@ -14,7 +17,10 @@ class LaporanController extends Controller
      */
     public function index()
     {
-        $data = Laporan::all();
+        $data = DB::table('penjualans')
+        ->select('tanggal_penjualan', DB::raw('count(tanggal_penjualan) as jumlah_penjualan'))
+        ->groupBy('tanggal_penjualan')
+        ->get();
         return view('laporan.index',compact('data'));
     }
 
@@ -25,7 +31,7 @@ class LaporanController extends Controller
      */
     public function create()
     {
-        return view('laporan.create');
+
     }
 
     /**
@@ -47,7 +53,9 @@ class LaporanController extends Controller
      */
     public function show($id)
     {
-        //
+        $tanggalnya = $date;
+        $data = Penjualan::where('tanggal_penjualan','=',$date) ->get();
+        return view('laporan.view', compact('data','tanggalnya'));
     }
 
     /**

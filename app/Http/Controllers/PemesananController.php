@@ -8,6 +8,7 @@ use App\Pemesanan;
 use App\Barang;
 use Session;
 use App\Pembeli;
+use App\Penjualan;
 class PemesananController extends Controller
 {
     /**
@@ -109,8 +110,26 @@ class PemesananController extends Controller
                 $check = ($brg->stok_barang - $request->jumlah_pesanan);
                 if($check > 1){
                     $brg->stok_barang = $check;
-                    $brg->save();
-                        return redirect('/dashboard/pemesanan')->with('status', 'Pemesanan Updated!');
+                        if($brg->save()){
+                            $jual = new Penjualan();
+                            $jual->total_penjualan = $request->harga_barang * $request->jumlah_pesanan;
+                            $jual->diskon_penjualan = 0;
+                            $jual->tanggal_penjualan = date('Y-m-d');
+                            $jual->id_pembeli = $request->id_pembeli; ;
+                            $jual->id_barang = $request->id_barang;
+                            $jual->id_supplier = 0;
+                            $jual->nama_barang = $request->nama_barang;
+                            $jual->jumlah_pesanan = $request->jumlah_pesanan;
+                            $jual->harga_barang = $request->harga_barang;
+                            $jual->foto_barang = $request->foto_barang;
+                            $jual->nama_supplier = "-";
+                            $jual->nama_pembeli = "-";
+                            $jual->save();
+                            return redirect('/dashboard/pemesanan')->with('status', 'Pemesanan Updated!');
+                        }else{
+                            return redirect('/dashboard/pemesanan')->with('failed', 'Gagal Insert Ke Penjualan!');
+                        }
+                        
                 }else{
                         return redirect('/dashboard/pemesanan')->with('failed', 'Gagal Update Stok, Coba Ulangi Lagi!');
                 }

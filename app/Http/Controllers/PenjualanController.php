@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Penjualan;
+use DB;
+use Response;
 
 class PenjualanController extends Controller
 {
@@ -14,7 +16,10 @@ class PenjualanController extends Controller
      */
     public function index()
     {
-        $data = Penjualan::all();
+        $data = DB::table('penjualans')
+        ->select('tanggal_penjualan', DB::raw('count(tanggal_penjualan) as jumlah_penjualan'))
+        ->groupBy('tanggal_penjualan')
+        ->get();
         return view('penjualan.index',compact('data'));
     }
 
@@ -25,7 +30,7 @@ class PenjualanController extends Controller
      */
     public function create()
     {
-        return view('penjualan.create');
+        //
     }
 
     /**
@@ -45,9 +50,11 @@ class PenjualanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($date)
     {
-        //
+        $tanggalnya = $date;
+        $data = Penjualan::where('tanggal_penjualan','=',$date) ->get();
+        return view('penjualan.view', compact('data','tanggalnya'));
     }
 
     /**

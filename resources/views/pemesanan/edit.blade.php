@@ -10,6 +10,7 @@
                     <form method="POST" action="/dashboard/pemesanan/update/{{$detail->id}}" enctype="multipart/form-data">
                     {{csrf_field()}}
                     <input type="hidden" id="nama_barang" name="nama_barang" value="{{$detail->nama_barang}}">
+                    <input type="hidden" id="foto_barang" name="foto_barang" value="{{$detail->foto_barang}}">
                     <div class="form-row">
                         <div class="col">
                             <select name="id_barang" class="form-control" readonly>
